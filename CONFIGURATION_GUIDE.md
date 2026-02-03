@@ -71,16 +71,16 @@ enabled = true
 
 ### 配置项汇总表
 
-| 配置项 | 值 | 说明 |
-|--------|-----|------|
-| `version` | 1 | 配置版本 |
-| `test_patterns` | 测试文件匹配规则 | 标识测试文件 |
-| `exclude_patterns` | 排除目录 | 不参与分析的目录 |
-| `analyzers.javascript` | 启用 | JS/TS 代码分析 |
-| `analyzers.test-coverage` | 启用 | 覆盖率分析 |
-| `plugins` | react | React 框架支持 |
-| `dialect` | typescript | TypeScript 支持 |
-| `code_formatters` | prettier | 代码格式化建议 |
+| 配置项                    | 值               | 说明             |
+| ------------------------- | ---------------- | ---------------- |
+| `version`                 | 1                | 配置版本         |
+| `test_patterns`           | 测试文件匹配规则 | 标识测试文件     |
+| `exclude_patterns`        | 排除目录         | 不参与分析的目录 |
+| `analyzers.javascript`    | 启用             | JS/TS 代码分析   |
+| `analyzers.test-coverage` | 启用             | 覆盖率分析       |
+| `plugins`                 | react            | React 框架支持   |
+| `dialect`                 | typescript       | TypeScript 支持  |
+| `code_formatters`         | prettier         | 代码格式化建议   |
 
 ---
 
@@ -89,63 +89,63 @@ enabled = true
 Vitest 是基于 Vite 的测试框架，速度快，配置简单。
 
 ```typescript
-import { defineConfig } from 'vitest/config'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from "vitest/config";
+import react from "@vitejs/plugin-react";
 
 export default defineConfig({
-  plugins: [react()],          // 使用 React 插件，支持 JSX 语法
-  
+  plugins: [react()], // 使用 React 插件，支持 JSX 语法
+
   test: {
-    globals: true,             // 启用全局 API (describe, it, expect 等)
-                               // 不需要每个文件都 import
+    globals: true, // 启用全局 API (describe, it, expect 等)
+    // 不需要每个文件都 import
 
-    environment: 'jsdom',      // 测试环境使用 jsdom
-                               // 模拟浏览器 DOM 环境，用于测试 React 组件
+    environment: "jsdom", // 测试环境使用 jsdom
+    // 模拟浏览器 DOM 环境，用于测试 React 组件
 
-    setupFiles: './src/test/setup.ts',  
-                               // 测试启动前执行的配置文件
-                               // 用于全局配置，如引入 jest-dom 匹配器
+    setupFiles: "./src/test/setup.ts",
+    // 测试启动前执行的配置文件
+    // 用于全局配置，如引入 jest-dom 匹配器
 
-    include: ['src/**/*.{test,spec}.{ts,tsx}'],
-                               // 包含哪些测试文件
-                               // 匹配 src 目录下所有 .test.ts/.spec.tsx 等文件
+    include: ["src/**/*.{test,spec}.{ts,tsx}"],
+    // 包含哪些测试文件
+    // 匹配 src 目录下所有 .test.ts/.spec.tsx 等文件
 
     coverage: {
-      provider: 'v8',          // 覆盖率提供程序，使用 V8 引擎内置的覆盖率
-                               // 速度快，准确度高
+      provider: "v8", // 覆盖率提供程序，使用 V8 引擎内置的覆盖率
+      // 速度快，准确度高
 
-      reporter: ['text', 'json', 'html', 'cobertura'],
-                               // 覆盖率报告格式：
-                               // - text      : 终端文本输出
-                               // - json      : JSON 格式文件
-                               // - html      : HTML 可视化报告
-                               // - cobertura : XML 格式，DeepSource 需要这个格式
+      reporter: ["text", "json", "html", "cobertura"],
+      // 覆盖率报告格式：
+      // - text      : 终端文本输出
+      // - json      : JSON 格式文件
+      // - html      : HTML 可视化报告
+      // - cobertura : XML 格式，DeepSource 需要这个格式
 
-      reportsDirectory: './coverage',
-                               // 报告输出目录
+      reportsDirectory: "./coverage",
+      // 报告输出目录
 
-      include: ['src/**/*.{ts,tsx}'],
-                               // 计算覆盖率时包含的源文件
+      include: ["src/**/*.{ts,tsx}"],
+      // 计算覆盖率时包含的源文件
 
       exclude: [
-        'src/test/**',                    // 排除测试配置目录
-        'src/**/*.test.{ts,tsx}',         // 排除测试文件
-        'src/**/*.spec.{ts,tsx}',         // 排除测试文件
-        'src/vite-env.d.ts',              // 排除类型声明文件
-        'src/main.tsx'                    // 排除入口文件
-      ]
-    }
-  }
-})
+        "src/test/**", // 排除测试配置目录
+        "src/**/*.test.{ts,tsx}", // 排除测试文件
+        "src/**/*.spec.{ts,tsx}", // 排除测试文件
+        "src/vite-env.d.ts", // 排除类型声明文件
+        "src/main.tsx", // 排除入口文件
+      ],
+    },
+  },
+});
 ```
 
 ### 覆盖率报告格式说明
 
-| 格式 | 文件 | 用途 |
-|------|------|------|
-| `text` | 终端输出 | 开发时快速查看 |
-| `html` | `coverage/index.html` | 浏览器查看详细报告 |
-| `json` | `coverage-final.json` | 程序处理用 |
+| 格式        | 文件                     | 用途                  |
+| ----------- | ------------------------ | --------------------- |
+| `text`      | 终端输出                 | 开发时快速查看        |
+| `html`      | `coverage/index.html`    | 浏览器查看详细报告    |
+| `json`      | `coverage-final.json`    | 程序处理用            |
 | `cobertura` | `cobertura-coverage.xml` | **上传到 DeepSource** |
 
 ---
@@ -155,50 +155,52 @@ export default defineConfig({
 这是 CI/CD 自动化配置，每次推送代码时自动运行测试并上传覆盖率。
 
 ```yaml
-name: DeepSource                    # 工作流名称，在 GitHub Actions 页面显示
+name: DeepSource # 工作流名称，在 GitHub Actions 页面显示
 
-on:                                 # 触发条件
+on: # 触发条件
   push:
     branches:
-      - main                        # 推送到 main 分支时触发
-      - master                      # 推送到 master 分支时触发
+      - main # 推送到 main 分支时触发
+      - master # 推送到 master 分支时触发
   pull_request:
-    types: [opened, synchronize, reopened]
-                                    # PR 创建、更新、重新打开时触发
+    types:
+      [opened, synchronize, reopened]
+      # PR 创建、更新、重新打开时触发
 
 jobs:
-  test-coverage:                    # 任务 ID
-    name: Test and Report Coverage  # 任务名称
-    runs-on: ubuntu-latest          # 运行环境：最新版 Ubuntu
+  test-coverage: # 任务 ID
+    name: Test and Report Coverage # 任务名称
+    runs-on: ubuntu-latest # 运行环境：最新版 Ubuntu
 
-    steps:                          # 执行步骤
-      - name: Checkout code         # 步骤1：检出代码
+    steps: # 执行步骤
+      - name: Checkout code # 步骤1：检出代码
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0            # 获取完整 Git 历史，某些分析需要
+          fetch-depth: 0 # 获取完整 Git 历史，某些分析需要
 
-      - name: Setup Node.js         # 步骤2：安装 Node.js
+      - name: Setup Node.js # 步骤2：安装 Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'        # Node.js 版本 20
-          cache: 'npm'              # 缓存 npm 依赖，加速构建
+          node-version: "20" # Node.js 版本 20
+          cache: "npm" # 缓存 npm 依赖，加速构建
 
-      - name: Install dependencies  # 步骤3：安装项目依赖
-        run: npm ci                 # npm ci 比 npm install 更快更可靠
+      - name: Install dependencies # 步骤3：安装项目依赖
+        run: npm ci # npm ci 比 npm install 更快更可靠
 
-      - name: Run tests with coverage  # 步骤4：运行测试并生成覆盖率
+      - name: Run tests with coverage # 步骤4：运行测试并生成覆盖率
         run: npm run test:coverage
 
-      - name: Install DeepSource CLI   # 步骤5：安装 DeepSource 命令行工具
+      - name: Install DeepSource CLI # 步骤5：安装 DeepSource 命令行工具
         run: curl https://deepsource.io/cli | sh
 
-      - name: Report coverage to DeepSource  # 步骤6：上传覆盖率到 DeepSource
+      - name: Report coverage to DeepSource # 步骤6：上传覆盖率到 DeepSource
         run: |
           ./bin/deepsource report --analyzer test-coverage --key javascript --value-file ./coverage/cobertura-coverage.xml
         env:
-          DEEPSOURCE_DSN: ${{ secrets.DEEPSOURCE_DSN }}
-                                    # 从 GitHub Secrets 读取 DeepSource DSN
-                                    # DSN 是 DeepSource 的认证密钥
+          DEEPSOURCE_DSN:
+            ${{ secrets.DEEPSOURCE_DSN }}
+            # 从 GitHub Secrets 读取 DeepSource DSN
+            # DSN 是 DeepSource 的认证密钥
 ```
 
 ### 工作流执行流程图
@@ -227,12 +229,12 @@ DeepSource 显示覆盖率数据
 ```json
 {
   "scripts": {
-    "dev": "vite",                          // 启动开发服务器
-    "build": "tsc -b && vite build",        // 类型检查 + 生产构建
-    "lint": "eslint .",                     // 代码规范检查
-    "preview": "vite preview",              // 预览生产构建
-    "test": "vitest run",                   // 运行测试（单次）
-    "test:watch": "vitest",                 // 运行测试（监听模式）
+    "dev": "vite", // 启动开发服务器
+    "build": "tsc -b && vite build", // 类型检查 + 生产构建
+    "lint": "eslint .", // 代码规范检查
+    "preview": "vite preview", // 预览生产构建
+    "test": "vitest run", // 运行测试（单次）
+    "test:watch": "vitest", // 运行测试（监听模式）
     "test:coverage": "vitest run --coverage" // 运行测试 + 覆盖率
   }
 }
@@ -240,18 +242,18 @@ DeepSource 显示覆盖率数据
 
 ### 主要依赖说明
 
-| 依赖 | 类型 | 说明 |
-|------|------|------|
-| `react` | 运行时 | React 核心库 |
-| `react-dom` | 运行时 | React DOM 渲染 |
-| `typescript` | 开发 | TypeScript 编译器 |
-| `vite` | 开发 | 构建工具 |
-| `vitest` | 开发 | 测试框架 |
-| `@vitest/coverage-v8` | 开发 | V8 覆盖率提供程序 |
-| `@testing-library/react` | 开发 | React 测试工具 |
-| `@testing-library/jest-dom` | 开发 | DOM 断言匹配器 |
-| `eslint` | 开发 | 代码规范检查 |
-| `jsdom` | 开发 | 浏览器 DOM 模拟 |
+| 依赖                        | 类型   | 说明              |
+| --------------------------- | ------ | ----------------- |
+| `react`                     | 运行时 | React 核心库      |
+| `react-dom`                 | 运行时 | React DOM 渲染    |
+| `typescript`                | 开发   | TypeScript 编译器 |
+| `vite`                      | 开发   | 构建工具          |
+| `vitest`                    | 开发   | 测试框架          |
+| `@vitest/coverage-v8`       | 开发   | V8 覆盖率提供程序 |
+| `@testing-library/react`    | 开发   | React 测试工具    |
+| `@testing-library/jest-dom` | 开发   | DOM 断言匹配器    |
+| `eslint`                    | 开发   | 代码规范检查      |
+| `jsdom`                     | 开发   | 浏览器 DOM 模拟   |
 
 ---
 
@@ -286,6 +288,7 @@ git push origin main
 ```
 
 推送后：
+
 - DeepSource 自动分析代码质量
 - GitHub Actions 自动运行测试并上传覆盖率
 - 在 DeepSource 仪表板查看分析结果
@@ -296,14 +299,14 @@ git push origin main
 
 配置完成后，DeepSource 将提供：
 
-| 功能 | 说明 |
-|------|------|
-| **代码质量分析** | 检测代码中的问题和反模式 |
-| **安全漏洞扫描** | 发现潜在的安全风险 |
-| **代码覆盖率** | 显示测试覆盖的代码比例 |
+| 功能               | 说明                       |
+| ------------------ | -------------------------- |
+| **代码质量分析**   | 检测代码中的问题和反模式   |
+| **安全漏洞扫描**   | 发现潜在的安全风险         |
+| **代码覆盖率**     | 显示测试覆盖的代码比例     |
 | **代码格式化建议** | 基于 Prettier 的格式化建议 |
-| **PR 检查** | 每个 PR 自动运行检查 |
+| **PR 检查**        | 每个 PR 自动运行检查       |
 
 ---
 
-*文档生成时间：2026-02-02*
+_文档生成时间：2026-02-02_

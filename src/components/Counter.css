@@ -27,12 +27,30 @@
   font-size: 0.85rem;
 }
 
-.status.negative { background: #ffebee; color: #c62828; }
-.status.zero { background: #f5f5f5; color: #616161; }
-.status.small { background: #e3f2fd; color: #1565c0; }
-.status.medium { background: #e8f5e9; color: #2e7d32; }
-.status.large { background: #fff3e0; color: #ef6c00; }
-.status.huge { background: #fce4ec; color: #c2185b; }
+.status.negative {
+  background: #ffebee;
+  color: #c62828;
+}
+.status.zero {
+  background: #f5f5f5;
+  color: #616161;
+}
+.status.small {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+.status.medium {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+.status.large {
+  background: #fff3e0;
+  color: #ef6c00;
+}
+.status.huge {
+  background: #fce4ec;
+  color: #c2185b;
+}
 
 .counter-buttons {
   display: flex;
