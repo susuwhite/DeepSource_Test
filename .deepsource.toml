@@ -1,0 +1,22 @@
+version = 1
+
+test_patterns = ["**/test/**", "**/*.test.ts", "**/*.test.tsx", "**/*.spec.ts", "**/*.spec.tsx"]
+exclude_patterns = ["dist/**", "node_modules/**", "coverage/**"]
+
+[[analyzers]]
+name = "javascript"
+enabled = true
+
+[analyzers.meta]
+plugins = ["react"]
+environment = ["browser", "nodejs", "vitest"]
+dialect = "typescript"
+module_system = "es-modules"
+
+[[analyzers]]
+name = "test-coverage"
+enabled = true
+
+[[code_formatters]]
+name = "prettier"
+enabled = true
