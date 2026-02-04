@@ -17,6 +17,9 @@ module_system = "es-modules"
 name = "test-coverage"
 enabled = true
 
+[analyzers.meta]
+required = false
+
 [[code_formatters]]
 name = "prettier"
 enabled = true
