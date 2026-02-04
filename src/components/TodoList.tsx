@@ -87,21 +87,24 @@ export function TodoList() {
     setTodos(todos.filter((t) => !t.completed));
   };
 
-      const handleInputChange = React.useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-        setInputValue(e.target.value);
-      }, []);
+  const handleInputChange = React.useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setInputValue(e.target.value);
+    },
+    [],
+  );
 
-      const handleFilterAll = React.useCallback(() => {
-        setFilter("all");
-      }, []);
+  const handleFilterAll = React.useCallback(() => {
+    setFilter("all");
+  }, []);
 
-      const handleFilterActive = React.useCallback(() => {
-        setFilter("active");
-      }, []);
+  const handleFilterActive = React.useCallback(() => {
+    setFilter("active");
+  }, []);
 
-      const handleFilterCompleted = React.useCallback(() => {
-        setFilter("completed");
-      }, []);
+  const handleFilterCompleted = React.useCallback(() => {
+    setFilter("completed");
+  }, []);
 
   return (
     <div className="todo-list">
