@@ -64,7 +64,7 @@ describe('TodoList', () => {
     fireEvent.click(checkboxes[0])
 
     // Filter by active (uncompleted)
-    const activeFilter = screen.getByRole('button', { name: /未完成/ })
+    const activeFilter = screen.getByRole('button', { name: /未完成/u })
     fireEvent.click(activeFilter)
 
     expect(screen.getByText('任务2')).toBeInTheDocument()
