@@ -87,6 +87,22 @@ export function TodoList() {
     setTodos(todos.filter((t) => !t.completed));
   };
 
+      const handleInputChange = React.useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+        setInputValue(e.target.value);
+      }, []);
+
+      const handleFilterAll = React.useCallback(() => {
+        setFilter("all");
+      }, []);
+
+      const handleFilterActive = React.useCallback(() => {
+        setFilter("active");
+      }, []);
+
+      const handleFilterCompleted = React.useCallback(() => {
+        setFilter("completed");
+      }, []);
+
   return (
     <div className="todo-list">
       <h2>待办事项</h2>
@@ -95,7 +111,7 @@ export function TodoList() {
         <input
           type="text"
           value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
+          onChange={handleInputChange}
           placeholder="添加新任务..."
           className="todo-input"
         />
@@ -107,19 +123,19 @@ export function TodoList() {
       <div className="todo-filters">
         <button
           className={filter === "all" ? "active" : ""}
-          onClick={() => setFilter("all")}
+          onClick={handleFilterAll}
         >
           全部 ({todos.length})
         </button>
         <button
           className={filter === "active" ? "active" : ""}
-          onClick={() => setFilter("active")}
+          onClick={handleFilterActive}
         >
           未完成 ({activeCount})
         </button>
         <button
           className={filter === "completed" ? "active" : ""}
-          onClick={() => setFilter("completed")}
+          onClick={handleFilterCompleted}
         >
           已完成 ({completedCount})
         </button>
